@@ -31,10 +31,10 @@ RUN git clone --quiet --branch $tag --depth 1 https://github.com/ONLYOFFICE/web-
 RUN git clone --quiet --branch $tag --depth 1 https://github.com/ONLYOFFICE/server.git      /build/server
 
 COPY server.patch /build/
-COPY web-apps.patch /build/
+#COPY web-apps.patch /build/
 
 RUN cd /build/server   && git apply /build/server.patch
-RUN cd /build/web-apps && git apply /build/web-apps.patch
+#RUN cd /build/web-apps && git apply /build/web-apps.patch
 
 
 
@@ -63,6 +63,6 @@ COPY --from=build-stage /build/converter  ${oo_root}/server/FileConverter/conver
 COPY --from=build-stage /build/docservice ${oo_root}/server/DocService/docservice
 
 # web-apps
-COPY --from=build-stage /build/web-apps/deploy/web-apps/apps/documenteditor/mobile/app.js     ${oo_root}/web-apps/apps/documenteditor/mobile/app.js
-COPY --from=build-stage /build/web-apps/deploy/web-apps/apps/presentationeditor/mobile/app.js ${oo_root}/web-apps/apps/presentationeditor/mobile/app.js
-COPY --from=build-stage /build/web-apps/deploy/web-apps/apps/spreadsheeteditor/mobile/app.js  ${oo_root}/web-apps/apps/spreadsheeteditor/mobile/app.js
+#COPY --from=build-stage /build/web-apps/deploy/web-apps/apps/documenteditor/mobile/app.js     ${oo_root}/web-apps/apps/documenteditor/mobile/app.js
+#COPY --from=build-stage /build/web-apps/deploy/web-apps/apps/presentationeditor/mobile/app.js ${oo_root}/web-apps/apps/presentationeditor/mobile/app.js
+#COPY --from=build-stage /build/web-apps/deploy/web-apps/apps/spreadsheeteditor/mobile/app.js  ${oo_root}/web-apps/apps/spreadsheeteditor/mobile/app.js
