@@ -33,7 +33,7 @@ RUN git clone --quiet --branch $tag --depth 1 https://github.com/ONLYOFFICE/serv
 COPY server.patch /build/
 #COPY web-apps.patch /build/
 
-RUN cd /build/server   && git apply /build/server.patch
+#RUN cd /build/server   && git apply /build/server.patch
 #RUN cd /build/web-apps && git apply /build/web-apps.patch
 
 
