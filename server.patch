@@ -1,5 +1,5 @@
 diff --git a/Common/sources/commondefines.js b/Common/sources/commondefines.js
-index 1b451d9..6006f88 100644
+index 24d2421..c434e43 100644
 --- a/Common/sources/commondefines.js
 +++ b/Common/sources/commondefines.js
 @@ -1043,8 +1043,8 @@ const c_oAscUnlockRes = {
@@ -14,7 +14,7 @@ index 1b451d9..6006f88 100644
  exports.TaskQueueData = TaskQueueData;
  exports.CMailMergeSendData = CMailMergeSendData;
 diff --git a/Common/sources/constants.js b/Common/sources/constants.js
-index c8d928d..25cc946 100644
+index 63d3249..96acf28 100644
 --- a/Common/sources/constants.js
 +++ b/Common/sources/constants.js
 @@ -72,7 +72,7 @@ exports.LICENSE_RESULT = {
@@ -27,7 +27,7 @@ index c8d928d..25cc946 100644
  
  exports.AVS_OFFICESTUDIO_FILE_UNKNOWN =  0x0000;
 diff --git a/Common/sources/license.js b/Common/sources/license.js
-index 0cb93a3..11ebdc9 100644
+index c651c60..2e9b923 100644
 --- a/Common/sources/license.js
 +++ b/Common/sources/license.js
 @@ -34,7 +34,7 @@
@@ -59,17 +59,17 @@ index 0cb93a3..11ebdc9 100644
 +		plugins: true,
  		buildDate: oBuildDate,
 -		endDate: null
-+		endDate: "2099-01-01T23:59:59.000Z"
++		endDate: "2999-01-01T23:59:59.000Z"
  	}, null];
  };
  
 -exports.packageType = constants.PACKAGE_TYPE_OS;
 +exports.packageType = constants.PACKAGE_TYPE_I;
 diff --git a/DocService/sources/DocsCoServer.js b/DocService/sources/DocsCoServer.js
-index 0133724..01ad966 100644
+index bf3f8e4..2724ba5 100644
 --- a/DocService/sources/DocsCoServer.js
 +++ b/DocService/sources/DocsCoServer.js
-@@ -164,7 +164,7 @@ let connections = []; // 袗泻褌懈胁薪褘械 褋芯械写懈薪械薪懈褟
+@@ -164,7 +164,7 @@ let connections = []; // Активные соединения
  let lockDocumentsTimerId = {};//to drop connection that can't unlockDocument
  let pubsub;
  let queue;
@@ -85,7 +85,7 @@ index 0133724..01ad966 100644
 -  licenseInfo = data;
 +  //licenseInfo = data;
    licenseOriginal = original;
-+  logger.debug('Not updating license info', data)
++  logger.debug('Not updating license info', data);
  };
  exports.getLicenseInfo = function() {
    return licenseInfo;
@@ -101,20 +101,7 @@ index 74ff676..4baa704 100644
 +//fs.watchFile(configCommon.get('license').get('license_file'), updateLicense);
  setInterval(updateLicense, 86400000);
  
- // 袝褋谢懈 蟹邪褏芯褔械褌褋褟 懈褋锌芯谢褜蟹芯胁邪褌褜 'development' 懈 'production',
-diff --git a/FileConverter/sources/convertermaster.js b/FileConverter/sources/convertermaster.js
-index 73a47da..24bf09c 100644
---- a/FileConverter/sources/convertermaster.js
-+++ b/FileConverter/sources/convertermaster.js
-@@ -85,7 +85,7 @@ if (cluster.isMaster) {
- 
-   updateLicense();
- 
--  fs.watchFile(configCommon.get('license').get('license_file'), updateLicense);
-+  //fs.watchFile(configCommon.get('license').get('license_file'), updateLicense);
-   setInterval(updateLicense, 86400000);
- } else {
-   const converter = require('./converter');
+ // Если захочется использовать 'development' и 'production',
 diff --git a/Makefile b/Makefile
 index e8e1308..fdc452d 100644
 --- a/Makefile
